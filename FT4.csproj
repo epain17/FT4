@@ -59,6 +59,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reception.cs" />
+    <Compile Include="WaitingQueueCP.cs" />
+    <Compile Include="WatingQueueAP.cs" />
     <EmbeddedResource Include="FT4.resx">
       <DependentUpon>FT4.cs</DependentUpon>
     </EmbeddedResource>

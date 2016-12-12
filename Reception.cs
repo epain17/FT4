@@ -15,8 +15,7 @@ namespace FT4
         Random random;
         bool open;
 
-        Queue<Customer> waitingCP = new Queue<Customer>();
-        Queue<Customer> waitingAP = new Queue<Customer>();
+       
 
         public Reception(int maxNrCustumers, AdventurePool AP, CommonPool CP)
         {
