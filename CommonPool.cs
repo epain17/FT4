@@ -11,17 +11,37 @@ namespace FT4
         int maxNrOfPeople;
         int currentNrOfPeople;
         Queue<Customer> customersInCP = new Queue<Customer>();
+        WaitingQueueCP wCP;
         Random random;
 
 
-        public CommonPool(int maxNrOfPeople)
+        public CommonPool(int maxNrOfPeople, WaitingQueueCP wCP)
         {
             this.maxNrOfPeople = maxNrOfPeople;
             currentNrOfPeople = 0;
             random = new Random();
+            this.wCP = wCP;
 
+        }
 
+        public void AddFromWQ()
+        {
+            Customer addToPool;
+            addToPool = wCP.DequeToPool();
+            customersInCP.Enqueue(addToPool);
+            ++currentNrOfPeople;
+        }
 
+        public void AddFromAP(Customer customer)
+        {
+            customersInCP.Enqueue(customer);
+            ++currentNrOfPeople;
+
+        }
+
+        public void MoveToExit()
+        {
+            customersInCP.Dequeue();
         }
     }
 }

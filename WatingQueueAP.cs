@@ -8,5 +8,36 @@ namespace FT4
 {
     class WatingQueueAP
     {
+        Queue<Customer> waitingQueue;
+        int totalCustomers;
+        int currentCustomers;
+
+
+
+        public WatingQueueAP(int total)
+        {
+            waitingQueue = new Queue<Customer>();
+            totalCustomers = total;
+            currentCustomers = 0;
+        }
+
+        public void EnqueToQueue(Customer customer)
+        {
+            if (currentCustomers != totalCustomers)
+            {
+                waitingQueue.Enqueue(customer);
+                ++currentCustomers;
+
+            }
+        }
+
+        public Customer DequeToPool()
+        {
+            Customer temp;
+            temp = waitingQueue.Dequeue();
+            --currentCustomers;
+            return temp;
+
+        }
     }
 }

@@ -10,22 +10,39 @@ namespace FT4
     {
         int currentWaitingCustumers;
         int maxNrCustumers;
-        AdventurePool AP;
-        CommonPool CP;
+        WaitingQueueCP wCP;
+        WatingQueueAP wAP;
         Random random;
         bool open;
+        int queueSelect;
 
        
 
-        public Reception(int maxNrCustumers, AdventurePool AP, CommonPool CP)
+        public Reception(int maxNrCustumers, WatingQueueAP wAP, WaitingQueueCP wCP)
         {
             this.maxNrCustumers = maxNrCustumers;
             currentWaitingCustumers = 0;
-            this.AP = AP;
-            this.CP = CP;
+            this.wAP = wAP;
+            this.wCP = wCP;
             open = false;
 
             random = new Random();
+
+        }
+
+        private void ChooseLine()
+        {
+            queueSelect = random.Next(1, 2);
+            Customer newCustomer = new Customer(queueSelect);
+            if(queueSelect == 1)
+            {
+                wAP.EnqueToQueue(newCustomer);
+            }
+            else if(queueSelect == 2)
+            {
+                wCP.EnqueToQueue(newCustomer);
+            }
+
 
         }
 
@@ -34,20 +51,10 @@ namespace FT4
 
         }
 
-        private int ChooseLine
-        {
-
-        }
-
-        private Customer AddToReception
-        {
-
-        }
-
-        private bool Open
-        {
-            get
-        }
+        //private bool Open
+        //{
+        //    get
+        //}
 
 
         
