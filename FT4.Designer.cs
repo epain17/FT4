@@ -100,6 +100,7 @@
             this.OpenClosePoll.TabIndex = 4;
             this.OpenClosePoll.Text = "ClosePool";
             this.OpenClosePoll.UseVisualStyleBackColor = true;
+            this.OpenClosePoll.Click += new System.EventHandler(this.OpenClosePoll_Click);
             // 
             // ClosedOrOpenlabel
             // 

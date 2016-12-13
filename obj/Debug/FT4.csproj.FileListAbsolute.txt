@@ -1,3 +1,11 @@
 C:\Users\Emil\Documents\Visual Studio 2015\Projects\FT4\FT4\bin\Debug\FT4.exe.config
 C:\Users\Emil\Documents\GitHub\FT4\bin\Debug\FT4.exe.config
 C:\Users\Emil\Documents\GitHub\FT4\FT4\bin\Debug\FT4.exe.config
+C:\Users\Emil\Documents\GitHub\FT4\FT4\bin\Debug\FT4.exe
+C:\Users\Emil\Documents\GitHub\FT4\FT4\bin\Debug\FT4.pdb
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.csprojResolveAssemblyReference.cache
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.FT4.resources
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.Properties.Resources.resources
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.csproj.GenerateResource.Cache
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.exe
+C:\Users\Emil\Documents\GitHub\FT4\FT4\obj\Debug\FT4.pdb

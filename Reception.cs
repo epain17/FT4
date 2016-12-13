@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FT4
@@ -16,7 +17,7 @@ namespace FT4
         bool open;
         int queueSelect;
 
-       
+
 
         public Reception(int maxNrCustumers, WatingQueueAP wAP, WaitingQueueCP wCP)
         {
@@ -30,34 +31,47 @@ namespace FT4
 
         }
 
-        private void ChooseLine()
+        public void ChooseLine()
         {
-            queueSelect = random.Next(1, 2);
-            Customer newCustomer = new Customer(queueSelect);
-            if(queueSelect == 1)
+            while (open == true)
             {
-                wAP.EnqueToQueue(newCustomer);
+                queueSelect = random.Next(1, 3);
+                Console.WriteLine(queueSelect.ToString());
+                Customer newCustomer = new Customer(queueSelect);
+                if (queueSelect == 1)
+                {
+                    wAP.EnqueToQueue(newCustomer);
+                }
+                else if (queueSelect == 2)
+                {
+                    wCP.EnqueToQueue(newCustomer);
+                }
+
             }
-            else if(queueSelect == 2)
+
+            if(open == false)
             {
-                wCP.EnqueToQueue(newCustomer);
+                Wait();
             }
 
 
         }
 
-        private void PutInLine()
+        private void Wait()
         {
-
+            while(open == false) { Thread.Sleep(400); }
+            ChooseLine();
         }
 
-        //private bool Open
-        //{
-        //    get
-        //}
+     
+
+        public bool Open
+        {
+            set { open = value; }
+        }
 
 
-        
+
 
 
 
