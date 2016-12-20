@@ -16,6 +16,7 @@ namespace FT4
         WaitingQueueCP wCP;
         Random random;
         bool full;
+        bool empty;
         object myLock;
         Label l1;
 
@@ -27,6 +28,7 @@ namespace FT4
             random = new Random();
             this.wCP = wCP;
             full = false;
+            empty = true;
             myLock = new object();
             this.l1 = l1;
 
@@ -34,9 +36,13 @@ namespace FT4
 
         public void Control()
         {
-            while (full != true)
+            while (full != true )
             {
-
+                if(wCP.Empty == true)
+                {
+                    break;
+                }
+              
                 AddFromWQ();
             }
             Wait();
@@ -44,7 +50,7 @@ namespace FT4
 
         public void Wait()
         {
-            while (full == true)
+            while (full == true || wCP.Empty == true)
             {
                 Thread.Sleep(200);
             }
@@ -55,18 +61,17 @@ namespace FT4
         public void AddFromWQ()
         {
             Monitor.Enter(myLock);
-
             while (customersInCP.Count >= maxNrOfPeople)
             {
                 Monitor.Wait(myLock);
             }
-
             customersInCP.Enqueue(wCP.DequeToPool());
             ++currentNrOfPeople;
+
+            if (customersInCP.Count > maxNrOfPeople) { full = true; }
+            empty = false;
             l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
-
-
-            Monitor.Pulse(myLock);
+            Monitor.PulseAll(myLock);
             Monitor.Exit(myLock);
 
         }
@@ -78,6 +83,7 @@ namespace FT4
             while (customersInCP.Count >= maxNrOfPeople)
             {
                 Monitor.Wait(myLock);
+
             }
 
             customersInCP.Enqueue(customer);
@@ -85,26 +91,46 @@ namespace FT4
             l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
 
 
-            Monitor.Pulse(myLock);
+            Monitor.PulseAll(myLock);
             Monitor.Exit(myLock);
 
         }
 
-        public void MoveToExit()
+        public Customer MoveToExit()
         {
             Monitor.Enter(myLock);
 
             while (customersInCP.Count == 0)
             {
                 Monitor.Wait(myLock);
-            }
-            customersInCP.Dequeue();
-            --currentNrOfPeople;
 
-            Monitor.Pulse(myLock);
+            }
+            Customer temp;
+            temp = customersInCP.Dequeue();
+            --currentNrOfPeople;
+            if (customersInCP.Count <= 0) { empty = true; }
+            full = false;
+            l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
+
+
+            Thread.Sleep(200);
+            Monitor.PulseAll(myLock);
             Monitor.Exit(myLock);
 
+            return temp;
 
+
+        }
+
+        public bool Full
+        {
+            get { return full; }
+            set { full = value; }
+        }
+
+        public bool Empty
+        {
+            get { return empty; }
         }
     }
 }

@@ -46,10 +46,11 @@
             this.UnitLimitAP = new System.Windows.Forms.Label();
             this.VisitorsLabel = new System.Windows.Forms.Label();
             this.VisitorsInAPlabel = new System.Windows.Forms.Label();
-            this.VisitorsInCplabel = new System.Windows.Forms.Label();
+            this.VisitorsCplabel = new System.Windows.Forms.Label();
             this.VistorsInCplabel = new System.Windows.Forms.Label();
             this.APpictureBox = new System.Windows.Forms.PictureBox();
             this.CPpicturebox = new System.Windows.Forms.PictureBox();
+            this.exit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -217,14 +218,14 @@
             this.VisitorsInAPlabel.TabIndex = 17;
             this.VisitorsInAPlabel.Text = "0";
             // 
-            // VisitorsInCplabel
+            // VisitorsCplabel
             // 
-            this.VisitorsInCplabel.AutoSize = true;
-            this.VisitorsInCplabel.Location = new System.Drawing.Point(678, 334);
-            this.VisitorsInCplabel.Name = "VisitorsInCplabel";
-            this.VisitorsInCplabel.Size = new System.Drawing.Size(40, 13);
-            this.VisitorsInCplabel.TabIndex = 18;
-            this.VisitorsInCplabel.Text = "Visitors";
+            this.VisitorsCplabel.AutoSize = true;
+            this.VisitorsCplabel.Location = new System.Drawing.Point(678, 334);
+            this.VisitorsCplabel.Name = "VisitorsCplabel";
+            this.VisitorsCplabel.Size = new System.Drawing.Size(40, 13);
+            this.VisitorsCplabel.TabIndex = 18;
+            this.VisitorsCplabel.Text = "Visitors";
             // 
             // VistorsInCplabel
             // 
@@ -251,15 +252,25 @@
             this.CPpicturebox.TabIndex = 21;
             this.CPpicturebox.TabStop = false;
             // 
+            // exit
+            // 
+            this.exit.AutoSize = true;
+            this.exit.Location = new System.Drawing.Point(284, 505);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(35, 13);
+            this.exit.TabIndex = 22;
+            this.exit.Text = "label1";
+            // 
             // FT4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 547);
+            this.Controls.Add(this.exit);
             this.Controls.Add(this.CPpicturebox);
             this.Controls.Add(this.APpictureBox);
             this.Controls.Add(this.VistorsInCplabel);
-            this.Controls.Add(this.VisitorsInCplabel);
+            this.Controls.Add(this.VisitorsCplabel);
             this.Controls.Add(this.VisitorsInAPlabel);
             this.Controls.Add(this.VisitorsLabel);
             this.Controls.Add(this.UnitLimitAP);
@@ -310,10 +321,11 @@
         private System.Windows.Forms.Label UnitLimitAP;
         private System.Windows.Forms.Label VisitorsLabel;
         private System.Windows.Forms.Label VisitorsInAPlabel;
-        private System.Windows.Forms.Label VisitorsInCplabel;
+        private System.Windows.Forms.Label VisitorsCplabel;
         private System.Windows.Forms.Label VistorsInCplabel;
         private System.Windows.Forms.PictureBox APpictureBox;
         private System.Windows.Forms.PictureBox CPpicturebox;
+        private System.Windows.Forms.Label exit;
     }
 }
 

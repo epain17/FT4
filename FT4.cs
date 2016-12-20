@@ -18,8 +18,9 @@ namespace FT4
         private WatingQueueAP wAP;
         private WaitingQueueCP wCP;
         private Reception reception;
+        private ExitQueue exitQ;
 
-        private Thread receptionThread, aPoolThread, cPoolThread;
+        private Thread receptionThread, aPoolThread, cPoolThread, exitThread;
 
 
         public FT4()
@@ -40,8 +41,9 @@ namespace FT4
             wAP = new WatingQueueAP(10, PeopleWaitingAP);
             wCP = new WaitingQueueCP(10, PeopleWaitingCP);
             reception = new Reception(10, wAP, wCP);
-            cPool = new CommonPool(10, wCP, VisitorsInCplabel);
+            cPool = new CommonPool(10, wCP, VistorsInCplabel);
             aPool = new AdventurePool(10, wAP, cPool, VisitorsInAPlabel);
+            exitQ = new ExitQueue(100, cPool, aPool, exit);
         }
 
         private void CreateThreads()
@@ -49,10 +51,12 @@ namespace FT4
             receptionThread = new Thread(reception.ChooseLine);
             aPoolThread = new Thread(aPool.Control);
             cPoolThread = new Thread(cPool.Control);
+            exitThread = new Thread(exitQ.Control);
 
             receptionThread.Start();
             aPoolThread.Start();
             cPoolThread.Start();
+            exitThread.Start();
         }
     }
 }

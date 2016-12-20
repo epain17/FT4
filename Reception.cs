@@ -13,8 +13,9 @@ namespace FT4
         int maxNrCustumers;
         WaitingQueueCP wCP;
         WatingQueueAP wAP;
+        
         Random random;
-        bool open;
+        bool open, receptionFull;
         int queueSelect;
 
 
@@ -26,6 +27,7 @@ namespace FT4
             this.wAP = wAP;
             this.wCP = wCP;
             open = false;
+            receptionFull = false;
 
             random = new Random();
 
@@ -33,48 +35,55 @@ namespace FT4
 
         public void ChooseLine()
         {
-            while (open == true)
+            while (open == true && receptionFull == false)
             {
                 queueSelect = random.Next(1, 3);
-                Console.WriteLine(queueSelect.ToString());
+                //Console.WriteLine(queueSelect.ToString());
                 Customer newCustomer = new Customer(queueSelect);
-                if (queueSelect == 1)
+                if (queueSelect == 1 && wAP.Full == false)
                 {
+                    receptionFull = false;
                     wAP.EnqueToQueue(newCustomer);
                 }
-                else if (queueSelect == 2)
+                else if (queueSelect == 2 && wCP.Full == false)
                 {
+                    receptionFull = false;
                     wCP.EnqueToQueue(newCustomer);
                 }
 
+                else if(wCP.Full == true && wAP.Full == true)
+                {
+                    receptionFull = true;
+                   
+                }
+
             }
 
-            if(open == false)
-            {
+           
                 Wait();
-            }
+            
 
 
         }
 
         private void Wait()
         {
-            while(open == false) { Thread.Sleep(400); }
+            while(open == false || receptionFull == true)
+            {
+                Thread.Sleep(1000);
+                if(wCP.Full == false || wAP.Full == false)
+                {
+                    receptionFull = false;
+                    break;
+                }
+            }
             ChooseLine();
         }
-
-     
 
         public bool Open
         {
             set { open = value; }
         }
-
-
-
-
-
-
 
     }
 }

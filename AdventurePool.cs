@@ -16,9 +16,9 @@ namespace FT4
         CommonPool CP;
         WatingQueueAP wAP;
         Random random;
-        int exit;
         object myLock;
         bool full;
+        bool empty;
         Label l1;
 
         public AdventurePool(int maxNrOfPeople, WatingQueueAP wAP, CommonPool CP, Label l1)
@@ -32,14 +32,19 @@ namespace FT4
 
             this.l1 = l1;
             full = false;
+            empty = true;
 
         }
 
         public void Control()
         {
-            while(full != true)
+            while (full != true)
             {
-               
+                if(wAP.Empty == true)
+                {
+                    break;
+                }           
+
                 AddFromWQ();
             }
             Wait();
@@ -47,7 +52,7 @@ namespace FT4
 
         public void Wait()
         {
-            while(full == true)
+            while (full == true || wAP.Empty == true)
             {
                 Thread.Sleep(200);
             }
@@ -58,51 +63,56 @@ namespace FT4
         public void AddFromWQ()
         {
             Monitor.Enter(myLock);
-
             while (customersInAP.Count >= maxNrOfPeople)
             {
                 Monitor.Wait(myLock);
             }
-
             customersInAP.Enqueue(wAP.DequeToPool());
             ++currentNrOfPeople;
+
+            if (customersInAP.Count > maxNrOfPeople) { full = true; }
+            empty = false;
             l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
-            Monitor.Pulse(myLock);
+            Monitor.PulseAll(myLock);
             Monitor.Exit(myLock);
         }
 
-        public void MoveToExitCP()
+        public Customer MoveToExit()
         {
-            exit = random.Next(1, 3);
-
             Monitor.Enter(myLock);
 
             while (customersInAP.Count == 0)
-            {
+            {   
                 Monitor.Wait(myLock);
             }
 
-            if (exit == 1)
-            {
-                customersInAP.Dequeue();
-            }
-            else if (exit == 2)
-            {
-                Customer temp;
-                temp = customersInAP.Dequeue();
-                CP.AddFromAP(temp);
-            }
+            Customer temp;
+            temp = customersInAP.Dequeue();
             --currentNrOfPeople;
+            if(customersInAP.Count <= 0) { empty = true; }
+            full = false;
+            l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
 
-            Monitor.Pulse(myLock);
+            Thread.Sleep(200);
+            Monitor.PulseAll(myLock);
             Monitor.Exit(myLock);
 
-
+            return temp;
         }
+
+
 
         public bool Full
         {
+            get { return full; }
             set { full = value; }
+        }
+        public bool Empty
+        {
+            get
+            {
+                return empty;
+            }
         }
     }
 }
