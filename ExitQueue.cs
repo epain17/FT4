@@ -17,7 +17,6 @@ namespace FT4
         int current;
         int exit;
         object myLock;
-        bool clear;
         bool full;
 
         Label l1;
@@ -31,10 +30,8 @@ namespace FT4
             current = 0;
             exit = 0;
             myLock = new object();
-            clear = false;
             full = false;
             this.l1 = l1;
-
 
         }
 
@@ -52,6 +49,7 @@ namespace FT4
             while (full != true)
             {
                 exit = rand.Next(1, 3);
+                Thread.Sleep(rand.Next(100, 1000));
                 if (CP.Empty == true && AP.Empty == true)
                 {
                     break;
@@ -72,7 +70,7 @@ namespace FT4
         {
             while (full == true || CP.Empty == true || AP.Empty == true)
             {
-                Thread.Sleep(200);
+                Thread.Sleep(rand.Next(100, 1000));
             }
 
             Control();
@@ -88,8 +86,8 @@ namespace FT4
             full = false;
             if (current >= total) { full = true; }
             l1.Invoke(new Action(delegate () { l1.Text = current.ToString(); }));
-            Thread.Sleep(200);
-                    
+            Thread.Sleep(rand.Next(100, 1000));
+
         }
 
         public void EnqueToExitAP()
@@ -102,8 +100,8 @@ namespace FT4
             full = false;
             if (current >= total) { full = true; }
             l1.Invoke(new Action(delegate () { l1.Text = current.ToString(); }));
-            Thread.Sleep(200);
-          
+            Thread.Sleep(rand.Next(100, 1000));
+
         }
 
 

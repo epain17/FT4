@@ -18,6 +18,8 @@ namespace FT4
         bool empty;
         Label l1;
 
+        Random random;
+
 
         public WaitingQueueCP(int total, Label l1)
         {
@@ -28,6 +30,8 @@ namespace FT4
             full = false;
             empty = true;
             this.l1 = l1;
+
+            random = new Random();
 
         }
 
@@ -42,7 +46,7 @@ namespace FT4
             else { full = false; }
 
             l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-            Thread.Sleep(200);
+            Thread.Sleep(random.Next(200, 500));
 
         }
 
@@ -58,7 +62,7 @@ namespace FT4
             else { empty = false; }
 
             l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-            Thread.Sleep(200);
+            Thread.Sleep(random.Next(200, 500));
 
             return temp;
 

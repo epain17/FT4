@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LobbyBox = new System.Windows.Forms.PictureBox();
             this.Receptionlabel = new System.Windows.Forms.Label();
             this.WaitingAPlabel = new System.Windows.Forms.Label();
             this.PeopleWaitingAP = new System.Windows.Forms.Label();
@@ -51,20 +51,23 @@
             this.APpictureBox = new System.Windows.Forms.PictureBox();
             this.CPpicturebox = new System.Windows.Forms.PictureBox();
             this.exit = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SwitchLabel = new System.Windows.Forms.Label();
+            this.gonethrue = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.LobbyBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.APpictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CPpicturebox)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // LobbyBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(13, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 523);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.LobbyBox.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.LobbyBox.Location = new System.Drawing.Point(13, 12);
+            this.LobbyBox.Name = "LobbyBox";
+            this.LobbyBox.Size = new System.Drawing.Size(199, 523);
+            this.LobbyBox.TabIndex = 0;
+            this.LobbyBox.TabStop = false;
             // 
             // Receptionlabel
             // 
@@ -78,7 +81,7 @@
             // WaitingAPlabel
             // 
             this.WaitingAPlabel.AutoSize = true;
-            this.WaitingAPlabel.Location = new System.Drawing.Point(25, 91);
+            this.WaitingAPlabel.Location = new System.Drawing.Point(41, 316);
             this.WaitingAPlabel.Name = "WaitingAPlabel";
             this.WaitingAPlabel.Size = new System.Drawing.Size(117, 13);
             this.WaitingAPlabel.TabIndex = 2;
@@ -87,7 +90,7 @@
             // PeopleWaitingAP
             // 
             this.PeopleWaitingAP.AutoSize = true;
-            this.PeopleWaitingAP.Location = new System.Drawing.Point(145, 91);
+            this.PeopleWaitingAP.Location = new System.Drawing.Point(164, 316);
             this.PeopleWaitingAP.Name = "PeopleWaitingAP";
             this.PeopleWaitingAP.Size = new System.Drawing.Size(13, 13);
             this.PeopleWaitingAP.TabIndex = 3;
@@ -95,27 +98,27 @@
             // 
             // OpenClosePoll
             // 
-            this.OpenClosePoll.Location = new System.Drawing.Point(66, 274);
+            this.OpenClosePoll.Location = new System.Drawing.Point(69, 246);
             this.OpenClosePoll.Name = "OpenClosePoll";
             this.OpenClosePoll.Size = new System.Drawing.Size(75, 23);
             this.OpenClosePoll.TabIndex = 4;
-            this.OpenClosePoll.Text = "ClosePool";
+            this.OpenClosePoll.Text = "Open";
             this.OpenClosePoll.UseVisualStyleBackColor = true;
             this.OpenClosePoll.Click += new System.EventHandler(this.OpenClosePoll_Click);
             // 
             // ClosedOrOpenlabel
             // 
             this.ClosedOrOpenlabel.AutoSize = true;
-            this.ClosedOrOpenlabel.Location = new System.Drawing.Point(66, 325);
+            this.ClosedOrOpenlabel.Location = new System.Drawing.Point(89, 217);
             this.ClosedOrOpenlabel.Name = "ClosedOrOpenlabel";
-            this.ClosedOrOpenlabel.Size = new System.Drawing.Size(33, 13);
+            this.ClosedOrOpenlabel.Size = new System.Drawing.Size(34, 13);
             this.ClosedOrOpenlabel.TabIndex = 5;
-            this.ClosedOrOpenlabel.Text = "Open";
+            this.ClosedOrOpenlabel.Text = "Staus";
             // 
             // WaitingCPlabel
             // 
             this.WaitingCPlabel.AutoSize = true;
-            this.WaitingCPlabel.Location = new System.Drawing.Point(28, 460);
+            this.WaitingCPlabel.Location = new System.Drawing.Point(41, 356);
             this.WaitingCPlabel.Name = "WaitingCPlabel";
             this.WaitingCPlabel.Size = new System.Drawing.Size(112, 13);
             this.WaitingCPlabel.TabIndex = 6;
@@ -124,7 +127,7 @@
             // PeopleWaitingCP
             // 
             this.PeopleWaitingCP.AutoSize = true;
-            this.PeopleWaitingCP.Location = new System.Drawing.Point(148, 460);
+            this.PeopleWaitingCP.Location = new System.Drawing.Point(164, 356);
             this.PeopleWaitingCP.Name = "PeopleWaitingCP";
             this.PeopleWaitingCP.Size = new System.Drawing.Size(13, 13);
             this.PeopleWaitingCP.TabIndex = 7;
@@ -203,7 +206,7 @@
             // VisitorsLabel
             // 
             this.VisitorsLabel.AutoSize = true;
-            this.VisitorsLabel.Location = new System.Drawing.Point(675, 27);
+            this.VisitorsLabel.Location = new System.Drawing.Point(703, 27);
             this.VisitorsLabel.Name = "VisitorsLabel";
             this.VisitorsLabel.Size = new System.Drawing.Size(40, 13);
             this.VisitorsLabel.TabIndex = 16;
@@ -221,7 +224,7 @@
             // VisitorsCplabel
             // 
             this.VisitorsCplabel.AutoSize = true;
-            this.VisitorsCplabel.Location = new System.Drawing.Point(678, 334);
+            this.VisitorsCplabel.Location = new System.Drawing.Point(703, 334);
             this.VisitorsCplabel.Name = "VisitorsCplabel";
             this.VisitorsCplabel.Size = new System.Drawing.Size(40, 13);
             this.VisitorsCplabel.TabIndex = 18;
@@ -255,17 +258,37 @@
             // exit
             // 
             this.exit.AutoSize = true;
-            this.exit.Location = new System.Drawing.Point(284, 505);
+            this.exit.Location = new System.Drawing.Point(812, 256);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(35, 13);
+            this.exit.Size = new System.Drawing.Size(13, 13);
             this.exit.TabIndex = 22;
-            this.exit.Text = "label1";
+            this.exit.Text = "0";
+            // 
+            // SwitchLabel
+            // 
+            this.SwitchLabel.AutoSize = true;
+            this.SwitchLabel.Location = new System.Drawing.Point(438, 256);
+            this.SwitchLabel.Name = "SwitchLabel";
+            this.SwitchLabel.Size = new System.Drawing.Size(108, 13);
+            this.SwitchLabel.TabIndex = 23;
+            this.SwitchLabel.Text = "Switch from AP to CP";
+            // 
+            // gonethrue
+            // 
+            this.gonethrue.AutoSize = true;
+            this.gonethrue.Location = new System.Drawing.Point(703, 256);
+            this.gonethrue.Name = "gonethrue";
+            this.gonethrue.Size = new System.Drawing.Size(94, 13);
+            this.gonethrue.TabIndex = 24;
+            this.gonethrue.Text = "How many has left";
             // 
             // FT4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 547);
+            this.Controls.Add(this.gonethrue);
+            this.Controls.Add(this.SwitchLabel);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.CPpicturebox);
             this.Controls.Add(this.APpictureBox);
@@ -288,10 +311,10 @@
             this.Controls.Add(this.PeopleWaitingAP);
             this.Controls.Add(this.WaitingAPlabel);
             this.Controls.Add(this.Receptionlabel);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.LobbyBox);
             this.Name = "FT4";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LobbyBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.APpictureBox)).EndInit();
@@ -303,7 +326,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox LobbyBox;
         private System.Windows.Forms.Label Receptionlabel;
         private System.Windows.Forms.Label WaitingAPlabel;
         private System.Windows.Forms.Label PeopleWaitingAP;
@@ -326,6 +349,8 @@
         private System.Windows.Forms.PictureBox APpictureBox;
         private System.Windows.Forms.PictureBox CPpicturebox;
         private System.Windows.Forms.Label exit;
+        private System.Windows.Forms.Label SwitchLabel;
+        private System.Windows.Forms.Label gonethrue;
     }
 }
 

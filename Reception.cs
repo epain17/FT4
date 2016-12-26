@@ -9,7 +9,6 @@ namespace FT4
 {
     class Reception
     {
-        int currentWaitingCustumers;
         int maxNrCustumers;
         WaitingQueueCP wCP;
         WatingQueueAP wAP;
@@ -23,7 +22,6 @@ namespace FT4
         public Reception(int maxNrCustumers, WatingQueueAP wAP, WaitingQueueCP wCP)
         {
             this.maxNrCustumers = maxNrCustumers;
-            currentWaitingCustumers = 0;
             this.wAP = wAP;
             this.wCP = wCP;
             open = false;
@@ -44,17 +42,21 @@ namespace FT4
                 {
                     receptionFull = false;
                     wAP.EnqueToQueue(newCustomer);
+                    Thread.Sleep(random.Next(100, 400));
                 }
                 else if (queueSelect == 2 && wCP.Full == false)
                 {
                     receptionFull = false;
                     wCP.EnqueToQueue(newCustomer);
+                    Thread.Sleep(random.Next(100, 400));
+
                 }
 
                 else if(wCP.Full == true && wAP.Full == true)
                 {
                     receptionFull = true;
-                   
+                    Thread.Sleep(random.Next(100, 400));
+
                 }
 
             }
@@ -82,6 +84,7 @@ namespace FT4
 
         public bool Open
         {
+            get { return open; }
             set { open = value; }
         }
 

@@ -16,6 +16,7 @@ namespace FT4
         object myLock;
         bool full, empty;
         Label l1;
+        Random random;
 
         public WatingQueueAP(int total, Label l1)
         {
@@ -24,12 +25,10 @@ namespace FT4
             currentCustomers = 0;
             this.l1 = l1;
 
+            random = new Random();
             myLock = new object();
             full = false;
             empty = true;
-
-
-
         }
 
         public void EnqueToQueue(Customer customer)
@@ -43,8 +42,8 @@ namespace FT4
             else { full = false; }
 
             l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-            Thread.Sleep(200);
-           
+            Thread.Sleep(random.Next(200, 500));
+
 
         }
 
@@ -60,7 +59,7 @@ namespace FT4
             else { empty = false; }
 
             l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-            Thread.Sleep(200);
+            Thread.Sleep(random.Next(200, 500));
 
             return temp;
 

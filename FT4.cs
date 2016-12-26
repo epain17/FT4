@@ -32,18 +32,30 @@ namespace FT4
 
         private void OpenClosePoll_Click(object sender, EventArgs e)
         {
-            reception.Open = true;
-            
+            if (reception.Open == true)
+            {
+                reception.Open = false;
+                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Open"; }));
+            }
+
+            else if(reception.Open == false)
+            {
+                reception.Open = true;
+                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Closed"; }));
+            }
         }
 
-        private void CreateObjects()
+        private void CreateObjects() 
         {
             wAP = new WatingQueueAP(10, PeopleWaitingAP);
             wCP = new WaitingQueueCP(10, PeopleWaitingCP);
             reception = new Reception(10, wAP, wCP);
-            cPool = new CommonPool(10, wCP, VistorsInCplabel);
-            aPool = new AdventurePool(10, wAP, cPool, VisitorsInAPlabel);
+            aPool = new AdventurePool(10, wAP, VisitorsInAPlabel, APpictureBox);
+            cPool = new CommonPool(10, aPool, wCP, VistorsInCplabel, SwitchLabel, CPpicturebox);
             exitQ = new ExitQueue(100, cPool, aPool, exit);
+            APpictureBox.BackColor = Color.Green;
+            CPpicturebox.BackColor = Color.Green;
+            
         }
 
         private void CreateThreads()
