@@ -38,6 +38,9 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// Metoden håller tråden igång och om poolen är full skickas tråden till wait
+        /// </summary>
         public void Control()
         {
             while (full != true)
@@ -52,6 +55,9 @@ namespace FT4
             Wait();
         }
 
+        /// <summary>
+        /// wait håller tråden vid liv tills poolen inte längre är full
+        /// </summary>
         public void Wait()
         {
             while (full == true || wAP.Empty == true)
@@ -62,6 +68,9 @@ namespace FT4
             Control();
         }
 
+        /// <summary>
+        /// lägger till kunder från vänt kön till poolen
+        /// </summary>
         public void AddFromWQ()
         {
             Monitor.Enter(myLock);
@@ -88,6 +97,10 @@ namespace FT4
             Monitor.Exit(myLock);
         }
 
+        /// <summary>
+        /// metoden exitqueue klassen använder för att ta ut kunder från poolen
+        /// </summary>
+        /// <returns></returns>
         public Customer MoveToExit()
         {
             Monitor.Enter(myLock);
@@ -114,12 +127,18 @@ namespace FT4
             return temp;
         }
 
+        /// <summary>
+        /// property för boolen full
+        /// </summary>
         public bool Full
         {
             get { return full; }
             set { full = value; }
         }
 
+        /// <summary>
+        /// property för boolen empty
+        /// </summary>
         public bool Empty
         {
             get

@@ -35,13 +35,13 @@ namespace FT4
             if (reception.Open == true)
             {
                 reception.Open = false;
-                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Open"; }));
+                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Closed"; }));
             }
 
             else if(reception.Open == false)
             {
                 reception.Open = true;
-                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Closed"; }));
+                OpenClosePoll.Invoke(new Action(delegate () { OpenClosePoll.Text = "Open"; }));
             }
         }
 
@@ -55,6 +55,7 @@ namespace FT4
             exitQ = new ExitQueue(100, cPool, aPool, exit);
             APpictureBox.BackColor = Color.Green;
             CPpicturebox.BackColor = Color.Green;
+            OpenClosePoll.Text = "Closed";
             
         }
 

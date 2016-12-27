@@ -31,6 +31,10 @@ namespace FT4
             empty = true;
         }
 
+        /// <summary>
+        /// metoden receptionen använder för att lägga till kunder i kön
+        /// </summary>
+        /// <param name="customer"></param>
         public void EnqueToQueue(Customer customer)
         {
 
@@ -47,6 +51,10 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// metoden APpoolen använder för att dequeue kunder till sin kö
+        /// </summary>
+        /// <returns></returns>
         public Customer DequeToPool()
         {
 
@@ -65,40 +73,22 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// property för boolen full
+        /// </summary>
         public bool Full
         {
             get { return full; }
             set { full = value; }
         }
 
+        /// <summary>
+        /// property för boolen empty
+        /// </summary>
         public bool Empty
         {
             get { return empty; }
         }
     }
-    //writeSemaphore.WaitOne();
-
-    //waitingQueue.Enqueue(customer);
-    //++currentCustomers;
-    //l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-    //Thread.Sleep(200);
-
-    //readSemphore.Release();
-
-    //readSemphore.WaitOne();
-
-    //Customer temp;
-    //temp = waitingQueue.Dequeue();
-    //--currentCustomers;
-    //l1.Invoke(new Action(delegate () { l1.Text = currentCustomers.ToString(); }));
-    //Thread.Sleep(200);
-
-
-    //writeSemaphore.Release();
-
-    //return temp;
-
-    //readSemphore = new Semaphore(0, totalCustomers);
-    //writeSemaphore = new Semaphore(totalCustomers, totalCustomers);
-
+ 
 }

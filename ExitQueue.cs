@@ -35,7 +35,9 @@ namespace FT4
 
         }
 
-
+        /// <summary>
+        /// bestämmer om exit ska ta från CP eller AP. Om båda poolerna är fulla sätts de på WAit
+        /// </summary>
         public void Control()
         {
             if (exitQueue.Count >= total)
@@ -66,6 +68,9 @@ namespace FT4
             Wait();
         }
 
+        /// <summary>
+        /// håller tråden vid liv tills det går ta ut från poolerna
+        /// </summary>
         public void Wait()
         {
             while (full == true || CP.Empty == true || AP.Empty == true)
@@ -76,6 +81,9 @@ namespace FT4
             Control();
         }
 
+        /// <summary>
+        /// metoden som dequar från CP
+        /// </summary>
         public void EnqueToExitCP()
         {            
 
@@ -90,6 +98,9 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// metoden som dequar från AP
+        /// </summary>
         public void EnqueToExitAP()
         {
            

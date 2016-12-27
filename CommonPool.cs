@@ -42,6 +42,9 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// skickar tråden att ta in kunder från väntkön eller ta kunder från AP. Är poolen full skcikas tråden till wait
+        /// </summary>
         public void Control()
         {
             while (full != true)
@@ -56,7 +59,7 @@ namespace FT4
                 {
                     AddFromWQ();
                 }
-                else if (select == 2)
+                else if (select == 2 && apConnection.Empty == false)
                 {
                     AddFromAP();
                 }
@@ -64,16 +67,22 @@ namespace FT4
             Wait();
         }
 
+        /// <summary>
+        /// håller tråden vid liv tills poolen inte är full
+        /// </summary>
         public void Wait()
         {
             while (full == true || wCP.Empty == true)
             {
-                Thread.Sleep(random.Next(100, 300));
+                Thread.Sleep(500);
             }
 
             Control();
         }
 
+        /// <summary>
+        /// lägger in kunder från väntkön till poolen
+        /// </summary>
         public void AddFromWQ()
         {
             Monitor.Enter(myLock);
@@ -99,10 +108,13 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// hämtar kunder från AP
+        /// </summary>
         public void AddFromAP()
         {
             Monitor.Enter(myLock);
-            l2.Invoke(new Action(delegate () { l2.Text = "Ideal"; }));
+            l2.Invoke(new Action(delegate () { l2.Text = "Idel"; }));
 
             while (customersInCP.Count >= maxNrOfPeople)
             {
@@ -116,7 +128,7 @@ namespace FT4
             customersInCP.Enqueue(temp);
 
             ++currentNrOfPeople;
-            l2.Invoke(new Action(delegate () { l2.Text = "didit"; }));
+            l2.Invoke(new Action(delegate () { l2.Text = "Moved One"; }));
             l1.Invoke(new Action(delegate () { l1.Text = currentNrOfPeople.ToString(); }));
 
 
@@ -127,6 +139,10 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// metoden exitqueue klassen använder för att tömma poolen
+        /// </summary>
+        /// <returns></returns>
         public Customer MoveToExit()
         {
             Monitor.Enter(myLock);
@@ -157,12 +173,18 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// property för boolen full
+        /// </summary>
         public bool Full
         {
             get { return full; }
             set { full = value; }
         }
 
+        /// <summary>
+        /// property för boolen empty
+        /// </summary>
         public bool Empty
         {
             get { return empty; }

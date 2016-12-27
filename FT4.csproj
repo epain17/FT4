@@ -49,7 +49,6 @@
     <Compile Include="AdventurePool.cs" />
     <Compile Include="CommonPool.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Exit.cs" />
     <Compile Include="ExitQueue.cs" />
     <Compile Include="FT4.cs">
       <SubType>Form</SubType>

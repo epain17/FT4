@@ -31,12 +31,14 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// Skapar en n kund som sedan sätts ut i någon av det två köerna. Kön får inte vara full och om receptioen är full sätts tråden i wait metoden
+        /// </summary>
         public void ChooseLine()
         {
             while (open == true && receptionFull == false)
             {
                 queueSelect = random.Next(1, 3);
-                //Console.WriteLine(queueSelect.ToString());
                 Customer newCustomer = new Customer(queueSelect);
                 if (queueSelect == 1 && wAP.Full == false)
                 {
@@ -68,6 +70,9 @@ namespace FT4
 
         }
 
+        /// <summary>
+        /// metoden håller en tråd i sleep tills receptionen inte är full
+        /// </summary>
         private void Wait()
         {
             while(open == false || receptionFull == true)
@@ -82,6 +87,9 @@ namespace FT4
             ChooseLine();
         }
 
+        /// <summary>
+        ///  sätter property för boolen open
+        /// </summary>
         public bool Open
         {
             get { return open; }
